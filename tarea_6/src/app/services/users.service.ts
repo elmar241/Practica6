@@ -10,8 +10,9 @@ export class UsersService {
   private htttpClient = inject(HttpClient)
   private baseUrl: string = 'https://peticiones.online/api/users/'
 
-  getAllPromises() : Promise <any> {
-  return lastValueFrom(this.htttpClient.get<any>(this.baseUrl))
+  getAllPromises(url: string) : Promise <any> {
+    const miUrl = (url === "") ? this.baseUrl : url
+    return lastValueFrom(this.htttpClient.get<any>(miUrl))
   }
 
   getById(id: number) : Promise<any> {

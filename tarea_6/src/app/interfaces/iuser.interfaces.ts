@@ -14,6 +14,6 @@ export interface IResponse {
   per_page: number;
   total: number;
   total_pages: number;
-  results: IUser;
+  results: IUser[];
 }
 
