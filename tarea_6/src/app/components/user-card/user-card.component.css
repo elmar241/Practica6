@@ -1,0 +1,14 @@
+.card-img-top {
+    width: 100px; 
+    height: auto; 
+    object-fit: cover;
+    transition: 1s;
+}
+
+img:hover {
+    transform: scale(1.15);
+}
+
+.card {
+    cursor: pointer;
+}

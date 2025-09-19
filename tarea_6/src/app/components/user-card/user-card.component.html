@@ -1,0 +1,17 @@
+<div class="card text-center border-3 border-danger" style="width: 18rem;" [routerLink]="['/user', miUser()?.id]">
+    <img [src]="miUser()?.image" class="card-img-top rounded-circle mx-auto mt-3" [alt]="miUser()?.first_name" >
+    <div class="card-body">
+        <h3 class="card-title">{{miUser()?.first_name}}<br>{{miUser()?.last_name}}</h3>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <button type="button" class="btn btn-primary" title="Ver detalle">
+                👁️<br>Ver detalle
+            </button>
+            <button type="button" class="btn btn-danger" title="Borrar">
+                🗑️<br>Borrar
+            </button>
+            <button type="button" class="btn btn-warning " title="Actualizar">
+                ✏️<br>Actualizar
+            </button>
+        </div>
+    </div>
+</div>
