@@ -1,0 +1,21 @@
+<section class="justify-content-center align-items-center py-4">
+    <form #loginForm="ngForm" (ngSubmit)="getLogin(loginForm)" style="border: 2px solid red; padding: 2rem; border-radius: 8px; background: #fff;">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="first_name" ngModel id="first_name" placeholder="Ingresa tu nombre">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Apellido</label>
+            <input type="text" class="form-control" name="last_name" ngModel id="last_name" placeholder="Ingresa tu apellido">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" ngModel id="email" id="email" placeholder="Ingresa tu email">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Enlace de la imagen</label>
+            <input type="url" class="form-control" name="image" ngModel id="image" id="imagen" placeholder="Ingresa el enlace de la imagen">
+        </div>
+        <button type="submit" class="btn btn-primary btn-danger ">Registrar</button>
+    </form>
+</section>

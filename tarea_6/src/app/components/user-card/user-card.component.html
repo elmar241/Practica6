@@ -1,4 +1,4 @@
-<div class="card text-center border-3 border-danger" style="width: 18rem;" [routerLink]="['/user', miUser()?.id]">
+<div class="card text-center border-3 border-danger" style="width: 18rem;" [routerLink]="['/user', miUser()?._id]">
     <img [src]="miUser()?.image" class="card-img-top rounded-circle mx-auto mt-3" [alt]="miUser()?.first_name" >
     <div class="card-body">
         <h3 class="card-title">{{miUser()?.first_name}}<br>{{miUser()?.last_name}}</h3>
