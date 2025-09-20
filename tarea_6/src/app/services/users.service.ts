@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { IResponse, IUser } from '../interfaces/iuser.interfaces';
+import { InjectSetupWrapper } from '@angular/core/testing';
 
 type IError =  {
   error: string;
@@ -24,7 +25,12 @@ export class UsersService {
     return lastValueFrom(this.htttpClient.post<any>(`${this.baseUrl}/login`, user))
   }
 
-  getById(id: number) : Promise<any> {
-    return lastValueFrom(this.htttpClient.get<any>(`${this.baseUrl}${id}`))
+  getById(_id: string) : Promise<IUser> {
+    return lastValueFrom(this.htttpClient.get<IUser>(`${this.baseUrl}${_id}`))
+  }
+
+  // Registrar un nuevo usuario utilizamos post
+  insert(user: IUser) : Promise<IUser> {
+    return lastValueFrom(this.htttpClient.post<IUser>(this.baseUrl, user))
   }
 }
