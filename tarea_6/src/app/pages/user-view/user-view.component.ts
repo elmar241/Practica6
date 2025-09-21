@@ -11,7 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class UserViewComponent {
   @Input() idUser : string = ""
-  @Output() deleteUserEmit: EventEmitter<string> = new EventEmitter()
   userService = inject(UsersService)
   user?: IUser
 
@@ -23,17 +22,4 @@ export class UserViewComponent {
       console.log(msg.error)
     }
   }
-
-  async deleteUser(idUser: string) {
-    // Llamamos al servicio y le pido que borre el empleado por id
-    const response: any = await this.userService.remove(idUser)
-    if(!response.error) {
-      this.deleteUserEmit.emit('Usuario borrado correctamente')
-    } else {
-      alert(response.error)
-    }
-  }
-
-
-
 }

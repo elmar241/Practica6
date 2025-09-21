@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import { IError, IUser } from '../../interfaces/iuser.interfaces';
+import { toast } from 'ngx-sonner';
 
 
 @Component({
@@ -52,12 +53,13 @@ export class FormComponent {
         const response = await this.userServices.update(this.userForm.value)
         if(response) {
           this.router.navigate(['/home'])
+          toast.warning('Usuario actualizado correctamente')
         }
       } else {
         const response = await this.userServices.insert(this.userForm.value)
         if(response) {
           this.router.navigate(['/home'])
-          alert('El Usuario se ha generado correctamente')
+          toast.success('Usuario registrado correctamente')
         }
       }
     } catch (msg: any) {
