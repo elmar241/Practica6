@@ -2,7 +2,7 @@
     <div class="row g-4 pt-4">
         @for(user of arrUsersPromises; track user._id){
             <article class="col-12 col-md-6 col-lg-3">
-                <app-user-card [miUser]="user"></app-user-card>
+                <app-user-card [miUser]="user" (deleteUserEmit)="getAlertDelete($event)"></app-user-card>
             </article>
         }
     </div>

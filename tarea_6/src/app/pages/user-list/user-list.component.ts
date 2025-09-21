@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { IResponse, IUser } from '../../interfaces/iuser.interfaces';
 import { UsersService } from '../../services/users.service';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-user-list',
@@ -29,6 +30,10 @@ export class UserListComponent {
     }
   }
 
+  getAlertDelete(event:string){
+    this.cargarUsuarios()
+    toast.error(event)
+  }
   gotoPrev(){
     this.cargarUsuarios(this.resultsPrev)
   }

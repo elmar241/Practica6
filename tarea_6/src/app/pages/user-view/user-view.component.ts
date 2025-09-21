@@ -1,4 +1,4 @@
-import { Component, inject, input, Input } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/iuser.interfaces';
 import { RouterLink } from '@angular/router';
@@ -11,18 +11,29 @@ import { RouterLink } from '@angular/router';
 })
 export class UserViewComponent {
   @Input() idUser : string = ""
+  @Output() deleteUserEmit: EventEmitter<string> = new EventEmitter()
   userService = inject(UsersService)
-  miUser = input<IUser>()
   user?: IUser
 
   async ngOnInit() {
-    
     try {
       this.user = await this.userService.getById(this.idUser)
 
     } catch (msg: any) {
       console.log(msg.error)
     }
-
   }
+
+  async deleteUser(idUser: string) {
+    // Llamamos al servicio y le pido que borre el empleado por id
+    const response: any = await this.userService.remove(idUser)
+    if(!response.error) {
+      this.deleteUserEmit.emit('Usuario borrado correctamente')
+    } else {
+      alert(response.error)
+    }
+  }
+
+
+
 }
