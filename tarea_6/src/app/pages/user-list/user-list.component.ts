@@ -13,20 +13,19 @@ import { toast } from 'ngx-sonner';
 export class UserListComponent {
   arrUsersPromises: IUser[] = []
   userService = inject(UsersService)
-  resultsNext: string = ""
-  resultsPrev: string = ""
+  currentPage: number = 1
 
   ngOnInit() {
     this.cargarUsuarios()
   }
 
-  async cargarUsuarios(url: string = ""){
-    try{
-      const response: IResponse = await this.userService.getAllPromises(url)
+  async cargarUsuarios(page: number = 1){
+    try {
+      const response: IResponse = await this.userService.getAllPromises(`${this.userService.baseUrl}?page=${page}`)
       this.arrUsersPromises = response.results
-    }
-    catch (error){
-      console.log(error)
+      this.currentPage = page
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -34,11 +33,13 @@ export class UserListComponent {
     this.cargarUsuarios()
     toast.error(event)
   }
-  gotoPrev(){
-    this.cargarUsuarios(this.resultsPrev)
+  gotoPrev() {
+    if (this.currentPage > 1) {
+      this.cargarUsuarios(this.currentPage - 1)
+    }
   }
 
   gotoNext() {
-    this.cargarUsuarios(this.resultsNext)
+    this.cargarUsuarios(this.currentPage + 1)
   }
 }

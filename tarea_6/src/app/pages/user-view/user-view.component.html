@@ -16,7 +16,7 @@
                 <button type="button" class="btn btn-warning " title="Actualizar" [routerLink]="['/updateuser', user?._id]">
                     Actualizar
                 </button>
-                <button type="button" class="btn btn-danger" title="Borrar">
+                <button type="button" class="btn btn-danger" title="Borrar" (click)="confirmDelete(user?._id!)">
                     Borrar
                 </button>
             </div>

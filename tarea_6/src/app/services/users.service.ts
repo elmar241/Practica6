@@ -14,11 +14,11 @@ type IError =  {
 
 export class UsersService {
   private htttpClient = inject(HttpClient)
-  private baseUrl: string = 'https://peticiones.online/api/users/'
+  baseUrl: string = 'https://peticiones.online/api/users/'
 
   getAllPromises(url: string) : Promise <any> {
     const miUrl = (url === "") ? this.baseUrl : url
-    return lastValueFrom(this.htttpClient.get<any>(miUrl))
+    return lastValueFrom(this.htttpClient.get<IResponse>(url))
   }
 
   getById(idUser: string) : Promise<IUser> {
