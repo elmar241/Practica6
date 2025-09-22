@@ -1,8 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
-import { IError, IUser } from '../../interfaces/iuser.interfaces';
+import { IUser } from '../../interfaces/iuser.interfaces';
 import { toast } from 'ngx-sonner';
 
 
@@ -23,10 +23,22 @@ export class FormComponent {
 
   constructor() {
     this.userForm = new FormGroup({
-      first_name: new FormControl("", []),
-      last_name: new FormControl("", []),
-      email: new FormControl("", []),
-      image: new FormControl("", []),
+      first_name: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      last_name: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[A-Za-zÀ-ÿ\s]+$/)
+      ]),
+      email: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)
+      ]),
+      image: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^(https?:\/\/[^\s]+)$/)
+      ]),
     });
   }
 
@@ -65,5 +77,9 @@ export class FormComponent {
     } catch (msg: any) {
         console.log(msg.error)
     }
+  }
+
+  checkControl(controlName: string, errorName: string): boolean | undefined {
+    return this.userForm.get(controlName)?.hasError(errorName) && this.userForm.get(controlName)?.touched
   }
 }
